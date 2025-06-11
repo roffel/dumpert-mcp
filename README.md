@@ -1,6 +1,8 @@
 # DumpertMCP
 
-DumpertMCP is a .NET 8.0 console application for interacting with the Dumpert.nl API. It allows you to fetch the latest videos, comments, soundboard items, and more from Dumpert, a popular Dutch video-sharing platform.
+DumpertMCP is a .NET 8.0-powered Model Context Protocol (MCP) Server designed for seamless interaction with the Dumpert.nl API. It enables you to fetch the latest videos, comments, soundboard items, and more from Dumpert. Dumpert.nl is a popular Dutch video-sharing platform.
+
+DumpertMCP is fully compatible with MCP-enabled large language models (LLMs), including popular options like OpenAI's ChatGPT, Mistral, Claude, GitHub Copilot, Microsoft Copilot and LLaMA. This makes it easy to integrate Dumpert content into your AI-driven workflows, chatbots, or analysis pipelines with minimal effort.
 
 ## Features
 - Get Kudotoppers
