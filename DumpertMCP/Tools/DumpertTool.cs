@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Text.Json;
 using ModelContextProtocol.Server;
 
-namespace DumpertMCP;
+namespace DumpertMCP.Tools;
 
 [McpServerToolType]
 public static class DumpertTool
