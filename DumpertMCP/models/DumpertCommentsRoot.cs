@@ -4,10 +4,12 @@ namespace DumpertMCP.models;
 
 public class DumpertCommentsRoot
 {
-    [JsonPropertyName("authors")]
-    public List<DumpertAuthor> Authors { get; set; } = [];
-    [JsonPropertyName("comments")]
-    public List<DumpertComment> Comments { get; set; } = [];
+    [JsonPropertyName("data")]
+    public DumpertCommentsData? Data { get; set; }
+
+    [JsonPropertyName("status")]
+    public string Status { get; set; } = string.Empty;
+    
     [JsonPropertyName("summary")]
     public DumpertSummary? Summary { get; set; }
 }

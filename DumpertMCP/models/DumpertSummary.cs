@@ -1,11 +1,18 @@
+using System.Text.Json.Serialization;
+
 namespace DumpertMCP.models;
 
 public class DumpertSummary
 {
-    public int Id { get; set; }
-    public string Title { get; set; } = string.Empty;
-    public string Link { get; set; } = string.Empty;
-    public int CommentCount { get; set; }
+    [JsonPropertyName("can_comment")]
     public bool CanComment { get; set; }
+
+    [JsonPropertyName("comment_count")]
+    public int CommentCount { get; set; }
+
+    [JsonPropertyName("get_rate_limit")]
+    public string GetRateLimit { get; set; } = string.Empty;
+
+    [JsonPropertyName("moderated_at")]
     public DateTime ModeratedAt { get; set; }
 }

@@ -25,7 +25,8 @@ public class DumpertService(IHttpClientFactory httpClientFactory)
     /// <returns>A list of Dumpert items representing the top videos of the week.</returns>
     public async Task<List<DumpertItem>> GetTopOfTheWeek(string yearWeek)
     {
-        var url = $"https://api.dumpert.nl/mobile_api/json/top5/week/{yearWeek}";
+        var formatted = yearWeek.Replace("-", "");
+        var url = $"https://api.dumpert.nl/mobile_api/json/top5/week/{formatted}";
         var result = await FetchData<DumpertApiResponse>(url);
         return result?.Items ?? new List<DumpertItem>();
     }
@@ -37,7 +38,8 @@ public class DumpertService(IHttpClientFactory httpClientFactory)
     /// <returns>A list of Dumpert items representing the top items of the month.</returns>
     public async Task<List<DumpertItem>> GetTopOfTheMonth(string yearMonth)
     {
-        var url = $"https://api.dumpert.nl/mobile_api/json/top5/maand/{yearMonth}";
+        var formatted = yearMonth.Replace("-", "");
+        var url = $"https://api.dumpert.nl/mobile_api/json/top5/maand/{formatted}";
         var result = await FetchData<DumpertApiResponse>(url);
         return result?.Items ?? [];
     }
@@ -145,7 +147,7 @@ public class DumpertService(IHttpClientFactory httpClientFactory)
         return result?.Items ?? [];
     }
 
-    private async Task<T?> FetchData<T>(string url)
+    public async Task<T?> FetchData<T>(string url)
     {
         var response = await _httpClient.GetAsync(url);
         if (!response.IsSuccessStatusCode)
@@ -172,9 +174,9 @@ public class DumpertService(IHttpClientFactory httpClientFactory)
     /// <param name="dumpertId">The Dumpert ID of the article.</param>
     /// <param name="includeItems">The number of items to include in the response.</param>
     /// <returns>An object containing the success status and response content.</returns>
-    public async Task<object?> GetCommentsForArticle(string dumpertId, int includeItems = 1)
+    public async Task<DumpertCommentsRoot?> GetCommentsForArticle(string dumpertId, int includeItems = 1)
     {
-        var url = $"https://comments.dumpert.nl/api/v1.0/articles/{dumpertId.Replace("_", "/")}/comments/?includeitems={includeItems}";
+        var url = $"https://comments.dumpert.nl/api/v1.0/articles/{dumpertId.Replace("_","/")}/comments/?includeitems={includeItems}";
         return await FetchData<DumpertCommentsRoot>(url);
     }
 
