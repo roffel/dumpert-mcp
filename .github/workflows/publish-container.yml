@@ -1,0 +1,28 @@
+name: Publish Container Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-container:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Publish container image
+        run: dotnet publish DumpertMCP/DumpertMCP.csproj /t:PublishContainer -p ContainerRegistry=docker.io
