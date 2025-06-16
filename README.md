@@ -15,6 +15,13 @@ DumpertMCP is fully compatible with MCP-enabled large language models (LLMs), in
 - .NET 8.0 SDK or later
 - Internet connection (for API access)
 
+## Testing
+To run the tests, you can use the following command:
+
+```bash
+npx @modelcontextprotocol/inspector dotnet run
+```
+
 ## Contributing
 Pull requests and issues are welcome! Please open an issue to discuss your ideas or report bugs.
 
