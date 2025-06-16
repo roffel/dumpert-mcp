@@ -188,7 +188,7 @@ public class DumpertService(IHttpClientFactory httpClientFactory)
     public async Task<object?> GetCommentById(string commentId)
     {
         var url = $"https://comments.dumpert.nl/api/v1.0/comments/{commentId}/";
-        return await FetchData<DumpertItem>(url);
+        return await FetchData<DumpertSingleCommentRoot>(url);
     }
 
     /// <summary>
