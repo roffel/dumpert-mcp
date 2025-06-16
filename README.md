@@ -16,11 +16,50 @@ DumpertMCP is fully compatible with MCP-enabled large language models (LLMs), in
 - Internet connection (for API access)
 
 ## Testing
-To run the tests, you can use the following command:
+To tests, you can use the following command:
 
 ```bash
 npx @modelcontextprotocol/inspector dotnet run
 ```
+
+## Use Docker version (No need to download this whole repository)
+
+Add the following MCP server to your LLM's configuration:
+
+```json
+"servers": {
+ "Dumpert": {
+        "command": "docker",
+        "args": [
+            "run",
+            "-i",
+            "--rm",
+            "roffel/dumpertmcp"
+        ],
+        "env": {}
+    }
+}
+```
+
+## Run from source
+
+Replace the path to the DumpertMCP.csproj file with the path to your local copy of the project. You can add the server to your LLM's configuration like this:
+
+```json
+
+"servers": {
+    "Dumpert": {
+        "type": "stdio",
+        "command": "dotnet",
+        "args": [
+            "run",
+            "--project",
+            "/Users/rutger/github/dumpert-mcp/DumpertMCP.csproj"
+        ]
+    }
+}
+```
+
 
 ## Contributing
 Pull requests and issues are welcome! Please open an issue to discuss your ideas or report bugs.
