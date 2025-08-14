@@ -88,7 +88,7 @@ public class DumpertService(IHttpClientFactory httpClientFactory)
     /// <returns>An object indicating the success of the operation and the response content.</returns>
     public async Task<object> Rate(string dumpertId, string upDown)
     {
-        var url = $"https://api.dumpert.nl/mobile_api/json/rating/{dumpertId}/{upDown}";
+        var url = $"https://post.dumpert.nl/api/v1.0/rating/{dumpertId}/{upDown}";
         var response = await _httpClient.GetAsync(url);
         var content = await response.Content.ReadAsStringAsync();
         return new { Success = response.IsSuccessStatusCode, Response = content };
@@ -173,11 +173,11 @@ public class DumpertService(IHttpClientFactory httpClientFactory)
     /// </summary>
     /// <param name="dumpertId">The Dumpert ID of the article.</param>
     /// <param name="includeItems">The number of items to include in the response.</param>
-    /// <returns>An object containing the success status and response content.</returns>
-    public async Task<DumpertCommentsRoot?> GetCommentsForArticle(string dumpertId, int includeItems = 1)
+    /// <returns>An object containing the comments response with authors, comments, and summary.</returns>
+    public async Task<DumpertCommentsResponse?> GetCommentsForArticle(string dumpertId, int includeItems = 1)
     {
-        var url = $"https://comments.dumpert.nl/api/v1.0/articles/{dumpertId.Replace("_","/")}/comments/?includeitems={includeItems}";
-        return await FetchData<DumpertCommentsRoot>(url);
+        var url = $"https://comment.dumpert.nl/api/v1.0/articles/{dumpertId.Replace("_","/")}/comments";
+        return await FetchData<DumpertCommentsResponse>(url);
     }
 
     /// <summary>
